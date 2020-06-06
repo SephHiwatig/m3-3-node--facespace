@@ -24,7 +24,7 @@ const handleProfilepage = (req, res) => {
 };
 
 const handleSignin = (req, res) => {
-  res.send("ok");
+  res.status(200).render("pages/signin");
 };
 
 // -----------------------------------------------------
