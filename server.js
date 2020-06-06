@@ -29,8 +29,6 @@ const handleProfilepage = (req, res) => {
     res.status(404).send("I couldn't find what you're looking for.");
   } else {
     let friends = users.filter((u) => user.friends.includes(u._id));
-    auth.isLoggedIn = true;
-    auth.userName = user.name;
     res.status(200).render("pages/profile", {
       user: user,
       friends: friends,
@@ -50,6 +48,8 @@ const handleName = (req, res) => {
   let user = users.find((u) => u.name === firstName);
 
   if (user) {
+    auth.isLoggedIn = true;
+    auth.userName = user.name;
     res.status(200).redirect("/users/" + user._id);
   } else {
     res.status(404).redirect("/signin");
