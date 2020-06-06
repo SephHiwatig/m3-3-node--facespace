@@ -13,7 +13,7 @@ const handleFourOhFour = (req, res) => {
 };
 
 const handleHomepage = (req, res) => {
-  res.status(200).send("homepage");
+  res.status(200).render("pages/homepage");
 };
 
 // -----------------------------------------------------
