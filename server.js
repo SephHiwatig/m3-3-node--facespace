@@ -23,6 +23,10 @@ const handleProfilepage = (req, res) => {
   res.status(200).render("pages/profile", { user: user, friends: friends });
 };
 
+const handleSignin = (req, res) => {
+  res.send("ok");
+};
+
 // -----------------------------------------------------
 // server endpoints
 express()
@@ -33,6 +37,7 @@ express()
 
   // endpoints
   .get("/", handleHomepage)
+  .get("/signin", handleSignin)
   .get("/users/:_id", handleProfilepage)
 
   // a catchall endpoint that will send the 404 message.
