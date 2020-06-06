@@ -17,7 +17,10 @@ const handleHomepage = (req, res) => {
 };
 
 const handleProfilepage = (req, res) => {
-  res.send(req.params._id);
+  let user = users.find((user) => user._id === req.params._id);
+
+  let friends = users.filter((u) => user.friends.includes(u._id));
+  res.status(200).render("pages/profile", { user: user, friends: friends });
 };
 
 // -----------------------------------------------------
