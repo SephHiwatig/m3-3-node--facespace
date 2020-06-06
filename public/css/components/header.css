@@ -6,5 +6,32 @@
   align-items: center;
 }
 .header h1 {
+  flex: 1;
+}
+.header h1 a {
   color: #fff;
+  text-decoration: none;
+  font-family: "Teko", sans-serif;
+  font-size: 36px;
+  line-height: 1em;
+}
+
+.signin-link {
+  color: #fff;
+  background-color: transparent;
+  flex: 10;
+  text-align: right;
+}
+
+.signin-link a {
+  color: #fff;
+  text-decoration: none;
+  font-family: "Teko", sans-serif;
+  font-size: 26px;
+  line-height: 1em;
+}
+
+.signin-link a:hover {
+  color: lightblue;
+  text-decoration: none;
 }

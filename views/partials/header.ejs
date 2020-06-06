@@ -7,5 +7,10 @@
 </head>
 <body>
   <header class="header">
-      <h1 class='site-title'>Facespace</h1>
+      <h1 class='site-title'><a href="/">Facespace</a></h1>
+      <% if(!auth.isLoggedIn) { %>
+      <h4 class="signin-link"><a href="/signin">Signin</a></h4>
+      <% } else { %>
+        <h4 class="signin-link">Howdy, <%- auth.userName %></h4>
+      <% } %>
   </header>

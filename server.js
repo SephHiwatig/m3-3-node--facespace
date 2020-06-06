@@ -5,7 +5,10 @@ const morgan = require("morgan");
 
 const { users } = require("./data/users");
 
-let currentUser = {};
+let auth = {
+  isLoggedIn: false,
+  userName: undefined,
+};
 
 // declare the 404 function
 const handleFourOhFour = (req, res) => {
@@ -13,18 +16,33 @@ const handleFourOhFour = (req, res) => {
 };
 
 const handleHomepage = (req, res) => {
-  res.status(200).render("pages/homepage", { users: users });
+  res.status(200).render("pages/homepage", {
+    users: users,
+    auth: auth,
+  });
 };
 
 const handleProfilepage = (req, res) => {
   let user = users.find((user) => user._id === req.params._id);
 
-  let friends = users.filter((u) => user.friends.includes(u._id));
-  res.status(200).render("pages/profile", { user: user, friends: friends });
+  if (!user) {
+    res.status(404).send("I couldn't find what you're looking for.");
+  } else {
+    let friends = users.filter((u) => user.friends.includes(u._id));
+    auth.isLoggedIn = true;
+    auth.userName = user.name;
+    res.status(200).render("pages/profile", {
+      user: user,
+      friends: friends,
+      auth: auth,
+    });
+  }
 };
 
 const handleSignin = (req, res) => {
-  res.status(200).render("pages/signin");
+  res.status(200).render("pages/signin", {
+    auth: auth,
+  });
 };
 
 const handleName = (req, res) => {

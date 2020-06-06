@@ -1,4 +1,4 @@
-<%- include('../partials/header') %>
+<%- include('../partials/header', {auth: auth}) %>
 <div class="signin-page">
   <form class="signin-page__form" method="get" action="/getname">
     <label class="signin-page__form--label" for="firstName">First name</label>
