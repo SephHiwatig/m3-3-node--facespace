@@ -8,6 +8,7 @@ const { users } = require("./data/users");
 let auth = {
   isLoggedIn: false,
   userName: undefined,
+  friends: undefined,
 };
 
 // declare the 404 function
@@ -50,6 +51,7 @@ const handleName = (req, res) => {
   if (user) {
     auth.isLoggedIn = true;
     auth.userName = user.name;
+    auth.friends = user.friends;
     res.status(200).redirect("/users/" + user._id);
   } else {
     res.status(404).redirect("/signin");

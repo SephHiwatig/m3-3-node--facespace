@@ -4,7 +4,12 @@
   <ul class="homepage__all">
     <% users.forEach(user => { %>
     <li class="homepage__all--user">
-      <a href="<%- '/users/' + user._id %>"><img src="<%= user.avatarUrl %>" /></a>
+      <div class="homepage__all--user--wrapper">
+        <% if(auth.friends && auth.friends.includes(user._id)) { %>
+          <span class="friend-marker">Friend</span>
+        <% } %>
+        <a href="<%- '/users/' + user._id %>"><img src="<%= user.avatarUrl %>" /></a>
+      </div>
     </li>
     <% }) %>
   </ul>
