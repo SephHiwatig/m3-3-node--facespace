@@ -9,6 +9,7 @@ let auth = {
   isLoggedIn: false,
   userName: undefined,
   friends: undefined,
+  userId: undefined,
 };
 
 // declare the 404 function
@@ -39,9 +40,13 @@ const handleProfilepage = (req, res) => {
 };
 
 const handleSignin = (req, res) => {
-  res.status(200).render("pages/signin", {
-    auth: auth,
-  });
+  if (auth.isLoggedIn) {
+    res.status(200).redirect("/users/" + auth.userId);
+  } else {
+    res.status(200).render("pages/signin", {
+      auth: auth,
+    });
+  }
 };
 
 const handleName = (req, res) => {
@@ -52,6 +57,7 @@ const handleName = (req, res) => {
     auth.isLoggedIn = true;
     auth.userName = user.name;
     auth.friends = user.friends;
+    auth.userId = user._id;
     res.status(200).redirect("/users/" + user._id);
   } else {
     res.status(404).redirect("/signin");
